@@ -48,7 +48,6 @@
 	<th>Title</th>
 	<th>Writer</th>
 	<th>Content</th>
-	<th>img</th>
 	<th>Category</th>
 	<th>Regdate</th>
 	<th>modifydate</th>
@@ -58,10 +57,9 @@
 <c:forEach items="${list}" var="u">
 	<tr>
 		<td>${u.getSeq()}</td>
-		<td>${u.getTitle()}</td>
+		<td><a href="view.jsp?id=${u.getSeq()}">${u.getTitle()}</a></td>
 		<td>${u.getWriter()}</td>
 		<td>${u.getContent()}</td>
-		<td><img src="${pageContext.request.contextPath}/upload/${u.getImg()}" alt="이미지" width="150" height="150"></td>
 		<td>${u.getCategory()}</td>
 		<td>${u.getRegdate()}</td>
 		<td>${u.getModifydate()}</td>

@@ -12,7 +12,7 @@
 <body>
 
 <h1>Add New Post</h1>
-<form action="addpost.jsp" method="post" enctype="multipart/form-data">
+<form action="addpost.jsp" method="post">
 <table>
 <tr><td>Title:</td><td><input type="text" name="title"/></td></tr>
 <tr><td>Writer:</td><td><input type="text" name="writer"/></td></tr>
@@ -35,9 +35,6 @@
     </select>
 
 </td></tr>
-
-<tr><td>이미지를 선택하세요 : </td><td><input type="file" name="input"/></td></tr>
-
 
 <tr><td><a href="posts.jsp">View All Records</a></td><td align="right"><input type="submit" value="Add Post"/></td></tr>
 </table>

@@ -16,7 +16,7 @@
 %>
 
 <h1>Edit Form</h1>
-<form action="editpost.jsp" method="post" enctype="multipart/form-data">
+<form action="editpost.jsp" method="post">
 <input type="hidden" name="seq" value="<%=u.getSeq() %>"/>
 <table>
 <tr><td>Title:</td><td><input type="text" name="title" value="<%= u.getTitle()%>"/></td></tr>
@@ -40,7 +40,6 @@
 
 	</td></tr>
 	</td>
-<tr><td>이미지를 선택하세요 : </td><td><input type="file" name="input"/></td></tr>
 </tr>
 <tr><td colspan="2"><input type="submit" value="Edit Post"/>
 <input type="button" value="Cancel" onclick="history.back()"/></td></tr>

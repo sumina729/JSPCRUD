@@ -16,8 +16,8 @@ public class BoardDAO {
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 
-	private final String BOARD_INSERT = "insert into BOARD (title, writer, content, category, img) values (?,?,?,?, ?)";
-	private final String BOARD_UPDATE = "update BOARD set title=?, writer=?, content=?, category=?, modifydate=?, img=? where seq=?";
+	private final String BOARD_INSERT = "insert into BOARD (title, writer, content, category) values (?,?,?,?)";
+	private final String BOARD_UPDATE = "update BOARD set title=?, writer=?, content=?, category=?, modifydate=? where seq=?";
 	private final String BOARD_DELETE = "delete from BOARD  where seq=?";
 	private final String BOARD_GET = "select * from BOARD  where seq=?";
 	private final String BOARD_LIST = "select * from BOARD order by seq desc";
@@ -31,7 +31,6 @@ public class BoardDAO {
 			stmt.setString(2, vo.getWriter());
 			stmt.setString(3, vo.getContent());
 			stmt.setString(4, vo.getCategory());
-			stmt.setString(5, vo.getImg());
 			stmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {
@@ -64,10 +63,9 @@ public class BoardDAO {
 			stmt.setString(4, vo.getCategory());
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			stmt.setTimestamp(5, timestamp);
-			stmt.setString(6, vo.getImg());
-			stmt.setInt(7, vo.getSeq());
+			stmt.setInt(6, vo.getSeq());
 
-			System.out.println(vo.getTitle() + "-" + vo.getWriter() + "-" + vo.getContent() + "-" + vo.getSeq() + "-" + vo.getImg());
+			System.out.println(vo.getTitle() + "-" + vo.getWriter() + "-" + vo.getContent() + "-" + vo.getSeq());
 			stmt.executeUpdate();
 			return 1;
 
@@ -90,8 +88,9 @@ public class BoardDAO {
 				one.setTitle(rs.getString("title"));
 				one.setWriter(rs.getString("writer"));
 				one.setContent(rs.getString("content"));
-				one.setImg(rs.getString("img"));
 				one.setCategory(rs.getString("category"));
+				one.setRegdate(rs.getTimestamp("regdate"));
+				one.setModifydate(rs.getTimestamp("modifydate"));
 				one.setCnt(rs.getInt("cnt"));
 			}
 			rs.close();
@@ -114,7 +113,6 @@ public class BoardDAO {
 				one.setTitle(rs.getString("title"));
 				one.setWriter(rs.getString("writer"));
 				one.setContent(rs.getString("content"));
-				one.setImg(rs.getString("img"));
 				one.setRegdate(rs.getTimestamp("regdate"));
 				one.setModifydate(rs.getTimestamp("modifydate"));
 				one.setCategory(rs.getString("category"));

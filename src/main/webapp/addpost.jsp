@@ -11,35 +11,15 @@
 <jsp:useBean id="u" class="com.example.jspcrud.BoardVO" />
 <jsp:setProperty property="*" name="u"/>
 
-<%
-	String filename = "";
-	int sizeLimit = 15 * 1024 * 1024;
-
-	String realPath = request.getServletContext().getRealPath("upload");
-	File dir = new File(realPath);
-	if (!dir.exists()) dir.mkdirs();
-
-	MultipartRequest multpartRequest = null;
-	multpartRequest = new MultipartRequest(request, realPath, sizeLimit, "utf-8",new DefaultFileRenamePolicy());
-	filename = multpartRequest.getFilesystemName("input");
-%>
-
-파일명 : <%=filename%> <br/>
-
 
 <%
 
 	BoardDAO boardDAO = new BoardDAO();
 
-	u.setTitle(multpartRequest.getParameter("title"));
-	u.setWriter(multpartRequest.getParameter("writer"));
-	u.setContent(multpartRequest.getParameter("content"));
-	u.setCategory(multpartRequest.getParameter("category"));
-
-	String s = filename;
-	u.setImg(s);
-
-	System.out.println("s========>" + s);
+	u.setTitle(request.getParameter("title"));
+	u.setWriter(request.getParameter("writer"));
+	u.setContent(request.getParameter("content"));
+	u.setCategory(request.getParameter("category"));
 
 	int i = boardDAO.insertBoard(u);
 	String msg = "데이터 추가 성공 !";
